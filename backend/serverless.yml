@@ -1,0 +1,94 @@
+service: labRegistro
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: RegistroAcademico
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - arn:aws:dynamodb:us-east-1:*:table/RegistroAcademico
+
+functions:
+  # ==== PARCIALES ====
+  createParcial:
+    handler: handlers/parciales/create.handler
+    events:
+      - http:
+          path: parciales
+          method: post
+          cors: true
+
+  getParcial:
+    handler: handlers/parciales/get.handler
+    events:
+      - http:
+          path: parciales/{parcialId}
+          method: get
+          cors: true
+
+  updateParcial:
+    handler: handlers/parciales/update.handler
+    events:
+      - http:
+          path: parciales/{parcialId}
+          method: put
+          cors: true
+
+  deleteParcial:
+    handler: handlers/parciales/delete.handler
+    events:
+      - http:
+          path: parciales/{parcialId}
+          method: delete
+          cors: true
+
+  # ==== PRACTICAS ====
+  createPractica:
+    handler: handlers/practicas/create.handler
+    events:
+      - http:
+          path: parciales/{parcialId}/practicas
+          method: post
+          cors: true
+
+  getPractica:
+    handler: handlers/practicas/get.handler
+    events:
+      - http:
+          path: parciales/{parcialId}/practicas/{practicaId}
+          method: get
+          cors: true
+
+  updatePractica:
+    handler: handlers/practicas/update.handler
+    events:
+      - http:
+          path: parciales/{parcialId}/practicas/{practicaId}
+          method: put
+          cors: true
+
+  deletePractica:
+    handler: handlers/practicas/delete.handler
+    events:
+      - http:
+          path: parciales/{parcialId}/practicas/{practicaId}
+          method: delete
+          cors: true
+
+
+plugins:
+  - serverless-offline
+
+package:
+  individually: true

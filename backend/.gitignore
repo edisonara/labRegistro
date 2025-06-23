@@ -1,0 +1,26 @@
+# Ignorar node_modules (paquetes de Node.js)
+node_modules/
+
+# Archivos de logs
+logs
+*.log
+npm-debug.log*
+
+# Directorios de sistema operativos (Windows, macOS, Linux)
+.DS_Store
+Thumbs.db
+
+# Archivos de entorno (si usas .env)
+.env
+
+# Archivos generados por editor o IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Otros archivos que no quieres subir (opcional)
+dist/
+build/

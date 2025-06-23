@@ -22,72 +22,89 @@ provider:
 functions:
   # ==== PARCIALES ====
   createParcial:
-    handler: src/handlers/parciales/create.handler
+    handler: src/handlers/parciales.create
     events:
       - http:
           path: parciales
           method: post
           cors: true
 
-  getParcial:
-    handler: src/handlers/parciales/get.handler
+  getAllParciales:
+    handler: src/handlers/parciales.getAll
     events:
       - http:
-          path: parciales/{parcialId}
+          path: parciales
+          method: get
+          cors: true
+
+  getParcialById:
+    handler: src/handlers/parciales.getById
+    events:
+      - http:
+          path: parciales/{asignaturaId}/{parcialId}
           method: get
           cors: true
 
   updateParcial:
-    handler: src/handlers/parciales/update.handler
+    handler: src/handlers/parciales.update
     events:
       - http:
-          path: parciales/{parcialId}
+          path: parciales/{asignaturaId}/{parcialId}
           method: put
           cors: true
 
   deleteParcial:
-    handler: src/handlers/parciales/delete.handler
+    handler: src/handlers/parciales.delete
     events:
       - http:
-          path: parciales/{parcialId}
+          path: parciales/{asignaturaId}/{parcialId}
           method: delete
           cors: true
 
   # ==== PRACTICAS ====
   createPractica:
-    handler: src/handlers/practicas/create.handler
+    handler: src/handlers/practicas.create
     events:
       - http:
-          path: parciales/{parcialId}/practicas
+          path: practicas
           method: post
           cors: true
 
-  getPractica:
-    handler: src/handlers/practicas/get.handler
+  getAllPracticas:
+    handler: src/handlers/practicas.getAll
     events:
       - http:
-          path: parciales/{parcialId}/practicas/{practicaId}
+          path: practicas
+          method: get
+          cors: true
+
+  getPracticaById:
+    handler: src/handlers/practicas.getById
+    events:
+      - http:
+          path: practicas/{id}
           method: get
           cors: true
 
   updatePractica:
-    handler: src/handlers/practicas/update.handler
+    handler: src/handlers/practicas.update
     events:
       - http:
-          path: parciales/{parcialId}/practicas/{practicaId}
+          path: practicas/{id}
           method: put
           cors: true
 
   deletePractica:
-    handler: src/handlers/practicas/delete.handler
+    handler: src/handlers/practicas.delete
     events:
       - http:
-          path: parciales/{parcialId}/practicas/{practicaId}
+          path: practicas/{id}
           method: delete
           cors: true
 
 package:
   individually: true
+
 resources:
   Resources:
     RegistroAcademicoTable:

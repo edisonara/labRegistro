@@ -17,7 +17,7 @@ provider:
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
           Resource:
-            - arn:aws:dynamodb:us-east-1:*:table/RegistroAcademico
+            - arn:aws:dynamodb:us-east-1:430861662846:table/RegistroAcademico
 
 functions:
   # ==== PARCIALES ====
